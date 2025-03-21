@@ -485,13 +485,7 @@ impl TitleBar {
             .tooltip(Tooltip::text("Open Library"))
             .on_click(cx.listener(move |_, _, window, cx| {
                 telemetry::event!("Open Library");
-                window.dispatch_action(
-                    OpenRecent {
-                        create_new_window: false,
-                    }
-                    .boxed_clone(),
-                    cx,
-                )
+                window.dispatch_action(zed_actions::assistant::ToggleFocus.boxed_clone(), cx)
             }))
             .into_any_element()
     }

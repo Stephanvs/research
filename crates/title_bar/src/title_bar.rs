@@ -126,6 +126,7 @@ pub struct TitleBar {
     should_move: bool,
     application_menu: Option<Entity<ApplicationMenu>>,
     _subscriptions: Vec<Subscription>,
+    // library_banner: Entity<Library>,
     zed_predict_banner: Entity<ZedPredictBanner>,
     git_banner: Entity<GitBanner>,
 }
@@ -210,6 +211,7 @@ impl Render for TitleBar {
                             })
                             .on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation()),
                     )
+                    .child(self.render_library(cx))
                     .child(self.render_collaborator_list(window, cx))
                     .child(self.zed_predict_banner.clone())
                     .child(self.git_banner.clone())
@@ -469,6 +471,29 @@ impl TitleBar {
                 })
                 .into_any_element(),
         )
+    }
+
+    pub fn render_library(&self, cx: &mut Context<Self>) -> AnyElement {
+        Button::new("open-library", "Open Library")
+            .style(ButtonStyle::Subtle)
+            .label_size(LabelSize::Small)
+            .color(Color::Muted)
+            .icon(IconName::Library)
+            .icon_size(IconSize::Small)
+            .icon_color(Color::Muted)
+            .icon_position(IconPosition::Start)
+            .tooltip(Tooltip::text("Open Library"))
+            .on_click(cx.listener(move |_, _, window, cx| {
+                telemetry::event!("Open Library");
+                window.dispatch_action(
+                    OpenRecent {
+                        create_new_window: false,
+                    }
+                    .boxed_clone(),
+                    cx,
+                )
+            }))
+            .into_any_element()
     }
 
     pub fn render_project_name(&self, cx: &mut Context<Self>) -> impl IntoElement {

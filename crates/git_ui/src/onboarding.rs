@@ -3,7 +3,7 @@ use gpui::{
     MouseDownEvent, Render,
 };
 use ui::{prelude::*, ButtonLike, TintColor, Tooltip};
-use util::ResultExt;
+use util::{ResultExt, TryFutureExt};
 use workspace::{ModalView, Workspace};
 
 use crate::git_panel::GitPanel;

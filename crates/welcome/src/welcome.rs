@@ -109,11 +109,11 @@ impl Render for WelcomePage {
                                 h_flex()
                                     .w_full()
                                     .justify_center()
-                                    .child(Headline::new("Welcome to Zed")),
+                                    .child(Headline::new("Welcome to Quest")),
                             )
                             .child(
                                 h_flex().w_full().justify_center().child(
-                                    Label::new("The editor for what's next")
+                                    Label::new("Research papers, reimagined for everyone")
                                         .color(Color::Muted)
                                         .italic(),
                                 ),
@@ -151,25 +151,25 @@ impl Render for WelcomePage {
                                                     .ok();
                                             })),
                                     )
-                                    .child(
-                                        Button::new("choose-keymap", "Choose a Keymap")
-                                            .icon(IconName::Keyboard)
-                                            .icon_size(IconSize::XSmall)
-                                            .icon_color(Color::Muted)
-                                            .icon_position(IconPosition::Start)
-                                            .on_click(cx.listener(|this, _, window, cx| {
-                                                telemetry::event!("Welcome Keymap Changed");
-                                                this.workspace
-                                                    .update(cx, |workspace, cx| {
-                                                        base_keymap_picker::toggle(
-                                                            workspace,
-                                                            &Default::default(),
-                                                            window, cx,
-                                                        )
-                                                    })
-                                                    .ok();
-                                            })),
-                                    )
+                                    // .child(
+                                    //     Button::new("choose-keymap", "Choose a Keymap")
+                                    //         .icon(IconName::Keyboard)
+                                    //         .icon_size(IconSize::XSmall)
+                                    //         .icon_color(Color::Muted)
+                                    //         .icon_position(IconPosition::Start)
+                                    //         .on_click(cx.listener(|this, _, window, cx| {
+                                    //             telemetry::event!("Welcome Keymap Changed");
+                                    //             this.workspace
+                                    //                 .update(cx, |workspace, cx| {
+                                    //                     base_keymap_picker::toggle(
+                                    //                         workspace,
+                                    //                         &Default::default(),
+                                    //                         window, cx,
+                                    //                     )
+                                    //                 })
+                                    //                 .ok();
+                                    //         })),
+                                    // )
                                     .child(
                                         Button::new(
                                             "try-zed-edit-prediction",

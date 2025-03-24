@@ -126,7 +126,6 @@ pub struct TitleBar {
     should_move: bool,
     application_menu: Option<Entity<ApplicationMenu>>,
     _subscriptions: Vec<Subscription>,
-    // library_banner: Entity<Library>,
     zed_predict_banner: Entity<ZedPredictBanner>,
     git_banner: Entity<GitBanner>,
 }
@@ -485,7 +484,7 @@ impl TitleBar {
             .tooltip(Tooltip::text("Open Library"))
             .on_click(cx.listener(move |_, _, window, cx| {
                 telemetry::event!("Open Library");
-                window.dispatch_action(zed_actions::assistant::ToggleFocus.boxed_clone(), cx)
+                window.dispatch_action(library_panel::ToggleFocus.boxed_clone(), cx)
             }))
             .into_any_element()
     }

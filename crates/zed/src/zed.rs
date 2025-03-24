@@ -30,6 +30,7 @@ use gpui::{
     UpdateGlobal, Window, WindowKind, WindowOptions,
 };
 use image_viewer::ImageInfo;
+use library_panel::LibraryPanel;
 use migrate::{MigrationBanner, MigrationEvent, MigrationNotification, MigrationType};
 use migrator::{migrate_keymap, migrate_settings};
 pub use open_listener::*;
@@ -398,6 +399,7 @@ fn initialize_panels(
     let prompt_builder = prompt_builder.clone();
 
     cx.spawn_in(window, async move |workspace_handle, cx| {
+        let library_panel = LibraryPanel::load(workspace_handle.clone(), cx.clone());
         let project_panel = ProjectPanel::load(workspace_handle.clone(), cx.clone());
         let outline_panel = OutlinePanel::load(workspace_handle.clone(), cx.clone());
         let terminal_panel = TerminalPanel::load(workspace_handle.clone(), cx.clone());
@@ -411,6 +413,7 @@ fn initialize_panels(
         );
 
         let (
+            library_panel,
             project_panel,
             outline_panel,
             terminal_panel,
@@ -418,6 +421,7 @@ fn initialize_panels(
             chat_panel,
             notification_panel,
         ) = futures::try_join!(
+            library_panel,
             project_panel,
             outline_panel,
             terminal_panel,
@@ -427,6 +431,7 @@ fn initialize_panels(
         )?;
 
         workspace_handle.update_in(cx, |workspace, window, cx| {
+            workspace.add_panel(library_panel, window, cx);
             workspace.add_panel(project_panel, window, cx);
             workspace.add_panel(outline_panel, window, cx);
             workspace.add_panel(terminal_panel, window, cx);

@@ -1,0 +1,13 @@
+[package]
+name = "library"
+version = "0.1.0"
+publish.workspace = true
+edition.workspace = true
+license = "GPL-3.0-or-later"
+
+[lints]
+workspace = true
+
+[lib]
+path = "src/library.rs"
+doctest = false

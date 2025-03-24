@@ -1,0 +1,21 @@
+[package]
+name = "library_panel"
+version = "0.1.0"
+publish.workspace = true
+edition.workspace = true
+license = "GPL-3.0-or-later"
+
+[lints]
+workspace = true
+
+[lib]
+name = "library_panel"
+path = "src/library_panel.rs"
+
+[dependencies]
+anyhow.workspace = true
+library.workspace = true
+gpui.workspace = true
+ui.workspace = true
+workspace.workspace = true
+project.workspace = true

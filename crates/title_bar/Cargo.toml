@@ -34,6 +34,7 @@ feature_flags.workspace = true
 gpui.workspace = true
 notifications.workspace = true
 project.workspace = true
+project_panel.workspace = true
 remote.workspace = true
 rpc.workspace = true
 schemars.workspace = true
@@ -49,6 +50,7 @@ workspace.workspace = true
 zed_actions.workspace = true
 zeta.workspace = true
 git_ui.workspace = true
+library_panel.workspace = true
 
 [target.'cfg(windows)'.dependencies]
 windows.workspace = true

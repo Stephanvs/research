@@ -84,6 +84,8 @@ members = [
     "crates/language_selector",
     "crates/language_tools",
     "crates/languages",
+    "crates/library",
+    "crates/library_panel",
     "crates/livekit_api",
     "crates/livekit_client",
     "crates/livekit_client_macos",
@@ -193,7 +195,7 @@ members = [
     # Tooling
     #
 
-    "tooling/xtask",
+    "tooling/xtask", "crates/library_panel", "crates/library",
 ]
 default-members = ["crates/zed"]
 
@@ -289,6 +291,8 @@ language_models = { path = "crates/language_models" }
 language_selector = { path = "crates/language_selector" }
 language_tools = { path = "crates/language_tools" }
 languages = { path = "crates/languages" }
+library = { path = "crates/library" }
+library_panel = { path = "crates/library_panel" }
 livekit_api = { path = "crates/livekit_api" }
 livekit_client = { path = "crates/livekit_client" }
 livekit_client_macos = { path = "crates/livekit_client_macos" }

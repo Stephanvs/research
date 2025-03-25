@@ -29,7 +29,6 @@ actions!(library_panel, [ToggleFocus]);
 pub fn init(cx: &mut App) {
     cx.observe_new(|workspace: &mut Workspace, _, _| {
         workspace.register_action(|workspace, _: &ToggleFocus, window, cx| {
-            println!("toggling library panel");
             workspace.toggle_panel_focus::<LibraryPanel>(window, cx);
         });
     })
